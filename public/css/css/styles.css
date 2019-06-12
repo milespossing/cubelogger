@@ -1,0 +1,16 @@
+body {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #bdbdbd;
+}
+
+div{
+    margin: 2em auto auto;
+}
+
+.log-form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
