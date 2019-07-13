@@ -6,27 +6,48 @@ const port = 3000;
 const express = require('express'),
     app = express();
 
-app.use(express.static('public'));
+const logger = require('./logger');
+
+const path = require('path');
+const exphbs = require('express-handlebars');
+
+app.engine('.hbs',exphbs({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    layoutsDir: 'public/views/layouts'
+}));
+
+app.set('view engine','.hbs');
+app.set('views', path.join(__dirname, 'public/views'));
+
+app.use((request,response,next)=>{
+    logger.logUrl(request.url);
+    next();
+});
+
 // app.use('/static',express.static('public/css/bootstrap/css'));
 
 app.get('/',function (req,res) {
-    // res.render('views/index.html');
-    redir = url.format({
-        pathname:'/views/index.html',
-        query: req.query
+    res.render('home',{
+        name: "Miles"
     });
-    res.redirect(redir);
 });
 
-const logger = require('./logger');
+app.get('/visits',function (req,res) {
+    // res.render('views/index.html');
+    testOutput = {"test":[1,2,3]};
+    res.json(testOutput);
+    // res.redirect(redir);
+});
 
 app.post('/', function (req,res) {
-    loggedTime = logger.log();
+    loggedTime = logger.logVisit();
     redir = url.format({
         pathname:"/",
         query: {'time': loggedTime}
     });
-    res.redirect(redir);
+    res.status(200);
+    // res.redirect(redir);
 });
 
 app.listen(port, function(){
