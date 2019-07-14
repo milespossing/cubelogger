@@ -5,8 +5,12 @@ body {
     background-color: #bdbdbd;
 }
 
-div{
-    margin: 2em auto auto;
+h1 {
+    margin: auto;
+}
+
+div {
+    margin: 1em auto auto;
 }
 
 .log-form {

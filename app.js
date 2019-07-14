@@ -14,42 +14,51 @@ const exphbs = require('express-handlebars');
 app.engine('.hbs',exphbs({
     defaultLayout: 'main',
     extname: '.hbs',
-    layoutsDir: 'public/views/layouts'
+    layoutsDir: 'public/views/layouts',
+    partialsDir: 'public/views/partials'
 }));
+
+
 
 app.set('view engine','.hbs');
 app.set('views', path.join(__dirname, 'public/views'));
+app.use("/styles",express.static('styles/'));
 
 app.use((request,response,next)=>{
     logger.logUrl(request.url);
     next();
 });
 
-// app.use('/static',express.static('public/css/bootstrap/css'));
 
 app.get('/',function (req,res) {
+    [,visit] = logger.readVisits(1);
     res.render('home',{
-        name: "Miles"
+        title: 'Simple Cube Logger!',
+        name: "Miles",
+        lastLog: visit[0] || "none"
     });
 });
 
 app.get('/visits',function (req,res) {
     // res.render('views/index.html');
-    testOutput = {"test":[1,2,3]};
-    res.json(testOutput);
+    let [count,visits] = logger.readVisits();
+    testOutput = {
+        "title": "Visit Log",
+        "count": count,
+        "visits":visits};
+    res.render('visits',testOutput);
     // res.redirect(redir);
 });
 
 app.post('/', function (req,res) {
     loggedTime = logger.logVisit();
     redir = url.format({
-        pathname:"/",
-        query: {'time': loggedTime}
+        pathname:"/visits",
     });
     res.status(200);
-    // res.redirect(redir);
+    res.redirect(redir);
 });
 
 app.listen(port, function(){
-    console.log("Example app listening at http://%s:%s", hostname, port)
+    console.log("Example app listening at http://%s:%s/", hostname, port)
 });

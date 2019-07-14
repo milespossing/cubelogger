@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "default": "/usr/local/bin/node /Users/milespossing/repos/cubelogger/app.js"
   },
   "keywords": [],
   "author": "",
