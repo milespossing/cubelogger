@@ -1,13 +1,16 @@
-const http = require('http');
 const url = require('url');
+const mongoClient = require('mongodb').MongoClient;
 
 const hostname = '127.0.0.1';
 const port = 3000;
+
 const express = require('express'),
     app = express();
 
-const logger = require('./logger');
+const mongoUrl = "mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb";
+const collection = "visitLogs";
 
+const logger = require('./logger');
 const path = require('path');
 const exphbs = require('express-handlebars');
 
@@ -25,33 +28,36 @@ app.set('views', path.join(__dirname, 'public/views'));
 app.use("/styles",express.static('styles/'));
 
 app.use((request,response,next)=>{
-    logger.logUrl(request.url);
+    logger.logUrl(request.url,request.method,mongoClient,mongoUrl,'urlLogs');
     next();
 });
 
 
 app.get('/',function (req,res) {
-    [,visit] = logger.readVisits(1);
-    res.render('home',{
-        title: 'Simple Cube Logger!',
-        name: "Miles",
-        lastLog: visit[0] || "none"
+    logger.readVisits(mongoClient,mongoUrl,collection,function(count,visits){
+        res.render('home',{
+            title: 'Simple Cube Logger!',
+            name: "Miles",
+            lastLog: visits[0] || "none"
+        });
     });
+
 });
 
 app.get('/visits',function (req,res) {
     // res.render('views/index.html');
-    let [count,visits] = logger.readVisits();
-    testOutput = {
-        "title": "Visit Log",
-        "count": count,
-        "visits":visits};
-    res.render('visits',testOutput);
-    // res.redirect(redir);
+    logger.readVisits(mongoClient,mongoUrl,collection,function(count,visits){
+        testOutput = {
+            "title": "Visit Log",
+            "count": count,
+            "visits":visits
+        };
+        res.render('visits',testOutput);
+    });
 });
 
 app.post('/', function (req,res) {
-    loggedTime = logger.logVisit();
+    logger.logVisit(mongoClient,mongoUrl,collection);
     redir = url.format({
         pathname:"/visits",
     });
