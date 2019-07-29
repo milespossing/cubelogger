@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "default": "/usr/local/bin/node /Users/milespossing/repos/cubelogger/app.js"
+    "default": "/usr/local/bin/node /Users/milespossing/repos/cubelogger/app.js",
+    "build": "node app.js"
   },
   "keywords": [],
   "author": "",
