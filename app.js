@@ -41,7 +41,6 @@ app.get('/',function (req,res) {
             lastLog: visits[0] || "none"
         });
     });
-
 });
 
 app.get('/visits',function (req,res) {
