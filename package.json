@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "echo \"I have nothing to do\"",
     "start": "node app.js"
   },
   "keywords": [],
