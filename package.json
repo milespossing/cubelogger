@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "default": "/usr/local/bin/node /Users/milespossing/repos/cubelogger/app.js",
-    "build": "echo \"There's nothing to do\""
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.2.2",
     "dependencies": "0.0.1",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",

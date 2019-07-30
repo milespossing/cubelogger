@@ -1,13 +1,14 @@
+const config = require('config');
 const url = require('url');
 const mongoClient = require('mongodb').MongoClient;
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = config.get('Configuration.port');
 
 const express = require('express'),
     app = express();
 
-const mongoUrl = "mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb";
+const mongoUrl = config.get('Configuration.dbUrl');
 const collection = "visitLogs";
 
 const logger = require('./logger');
