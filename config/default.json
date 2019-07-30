@@ -1,6 +1,6 @@
 {
     "Configuration":{
         "port": 3000,
-        "dbUrl": "mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb"
+        "dbUrl": "mongodb://192.168.65.1:28000/test?gssapiServiceName=mongodb"
     }
 }
