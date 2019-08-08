@@ -2,7 +2,7 @@
   "name": "hellonode",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build": "echo \"I have nothing to do\"",
     "start": "node app.js"

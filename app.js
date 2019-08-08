@@ -1,14 +1,20 @@
-const config = require('config');
 const url = require('url');
-const mongoClient = require('mongodb').MongoClient;
+
+console.log('starting server');
+
+var mongoClient = require("mongodb").MongoClient;
+const mongoUrl = "mongodb://mpossing01:SSBt5LLaP9oVZVg7ub7nkY1M3rvpqq4nilz4849pJtjUvIRya3RNmgT64IqjNh8z7AIRMxRsH1oI0y0D0yNceg%3D%3D@mpossing01.documents.azure.com:10255/?ssl=true";
+mongoClient.connect(mongoUrl, function (err, client) {
+  client.close();
+  console.log('connected to mongo db at %s',mongoUrl);
+});
 
 const hostname = '127.0.0.1';
-const port = config.get('Configuration.port');
+const port = 8080;
 
 const express = require('express'),
     app = express();
 
-const mongoUrl = config.get('Configuration.dbUrl');
 const collection = "visitLogs";
 
 const logger = require('./logger');

@@ -1,5 +1,7 @@
 exports.logVisit = function(db,url,collection) {
+    console.log('logging visit');
     db.connect(url,function(err,db){
+        console.log('connected to db');
         if(err) throw err;
         let dbo = db.db('local');
         let mongoCollection = dbo.collection(collection);
@@ -35,7 +37,9 @@ exports.readVisits = async function(db, url, collection,callback) {
 };
 
 exports.logUrl = function(url,method,db,mongoUrl,collection) {
+    console.log('logging url');
     db.connect(mongoUrl,function(err,db){
+        console.log('connected to db');;
         if(err) throw err;
         let dbo = db.db('local');
         let mongoCollection = dbo.collection(collection);

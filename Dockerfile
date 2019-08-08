@@ -8,8 +8,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8080
 
-CMD ["export", "NODE_ENV=default"]
+CMD ["export", "NODE_ENV=production"]
 
 CMD ["node", "app.js"]
