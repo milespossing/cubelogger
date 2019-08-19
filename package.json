@@ -1,22 +1,32 @@
 {
-  "name": "hellonode",
+  "name": "cube-logger",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app/app.js",
   "scripts": {
-    "build": "echo \"I have nothing to do\"",
-    "start": "node app.js"
+    "scss": "node-sass --watch src/scss -o src/css",
+    "start": "export NODE_ENV=test && node src/app/app.js",
+    "debug": "node --inspect-brk src/app/app.js",
+    "test": "export NODE_ENV=test && node --inspect-brk src/app/app.js",
+    "production": "export NODE_ENV=production && npm run start"
   },
   "keywords": [],
-  "author": "",
+  "author": "Miles Possing",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "browser-sync": "^2.26.7",
     "config": "^3.2.2",
     "dependencies": "0.0.1",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "luxon": "^1.17.2",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.7",
-    "node-datetime": "^2.1.2"
+    "node-datetime": "^2.1.2",
+    "node-sass": "^4.12.0",
+    "plotly.js-cartesian-dist": "^1.49.1"
   }
 }

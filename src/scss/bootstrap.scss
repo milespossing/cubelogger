@@ -1,0 +1,61 @@
+$dusty: #96858f;
+$lavender: #6d7993;
+$overcast: #9099A2;
+$paper: #d5d5d5;
+
+$body-bg: $overcast;
+$light: $paper;
+$dark: $dusty;
+$primary: $lavender;
+
+
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+
+// body {
+//     margin: 5px;
+//     display: flex;
+//     flex-direction: column;
+// }
+
+h1 {
+    margin: auto;
+}
+
+div {
+    margin: 1em auto auto;
+}
+
+.log-form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+
+}
+
+.log-form-container {
+    display: block;
+    align-items: center;
+}
+
+.home-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.visit-list {
+    margin: .5em;
+}
+
+.visit-list > div {
+    margin: 0;
+    padding: .25em;
+}
+
+.visit-list > div:hover {
+    background-color: $light;
+}
+
